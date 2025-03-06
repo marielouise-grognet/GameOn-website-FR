@@ -53,6 +53,21 @@ form.addEventListener("submit", (event) => {
     isValid = true
   }
 
+
+  const baliseMail = document.getElementById("email")
+  const valeurMail = baliseMail.value.trim()
+  const regexMail = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i
+
+
+  if (!regexMail.test(valeurMail)) {
+    console.log('Adresse email invalide')
+    isValid = false
+  } else {
+    console.log('Adresse email valide')
+    isValid = true
+  }
+
+
   if (isValid) {
     form.submit()
   }
