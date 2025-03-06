@@ -26,6 +26,41 @@ btnClose.addEventListener("click", closeModal);
 function closeModal () {
   modalbg.style.display = "none";
 }
+const form = document.querySelector("form")
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let isValid = true;
+
+  const baliseFirst = document.getElementById("first")
+  const valeurFirst = baliseFirst.value.trim();
+  if (valeurFirst.length < 2) {
+    console.log('Remplir au minimum deux caractères')
+    isValid = false
+  } else {
+    console.log('Le champ est rempli')
+    isValid = true
+  }
+
+  const baliseLast = document.getElementById("last")
+  const valeurLast = baliseLast.value.trim();
+  if (valeurLast.length < 2) {
+    console.log('Remplir au minimum deux caractères')
+    isValid = false
+  } else {
+    console.log('Le champ est rempli')
+    isValid = true
+  }
+
+  if (isValid) {
+    form.submit()
+  }
+});
+
+
+
+
 
 
 
