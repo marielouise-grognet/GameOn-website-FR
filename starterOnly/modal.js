@@ -32,7 +32,6 @@ const form = document.querySelector("form")
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
   let isValid = true;
 
 /********** Validation du prénom */
@@ -41,10 +40,7 @@ form.addEventListener("submit", (event) => {
   if (valeurFirst.length < 2) {
     console.log('Remplir au minimum deux caractères')
     isValid = false
-  } else {
-    console.log('Le champ est rempli')
-    isValid = true
-  }
+  } 
 
   /**********Validation du nom */
   const baliseLast = document.getElementById("last")
@@ -52,10 +48,7 @@ form.addEventListener("submit", (event) => {
   if (valeurLast.length < 2) {
     console.log('Remplir au minimum deux caractères')
     isValid = false
-  } else {
-    console.log('Le champ est rempli')
-    isValid = true
-  }
+  } 
 
   /**********Validation de l'email */
   const baliseMail = document.getElementById("email")
@@ -65,25 +58,44 @@ form.addEventListener("submit", (event) => {
   if (!regexMail.test(valeurMail)) {
     console.log('Adresse email invalide')
     isValid = false
-  } else {
-    console.log('Adresse email valide')
-    isValid = true
-  }
+  } 
 /**********Validation de la quantité de tournois */
-const baliseQuantity = document.getElementById("quantity")
+  const baliseQuantity = document.getElementById("quantity")
   const valeurQuantity = baliseQuantity.value.trim()
-  
   const regexQuantity = /^\d+$/;
 
   if (!regexQuantity.test(valeurQuantity)) {
     console.log('La quantité doit être un nombre valide');
     isValid = false
-  } else {
-    console.log('La quantité est valide');
-    isValid = true
+  } 
+
+
+const baliseCheck = document.querySelectorAll("input[name='location']");
+let isBaliseChecked = false 
+baliseCheck.forEach((radio) => {
+  if (radio.checked) {
+    isBaliseChecked = true;
   }
+  if (!isBaliseChecked) {
+    console.log('Veuillez sélectionner un tournoi')
+    isValid = false
+  }
+})
+
+const baliseCondGen = document.getElementById("checkbox1")
+let isBaliseCondGenChecked = false
+if (baliseCondGen.checked) {
+  isBaliseCondGenChecked = true
+}
+if (!isBaliseCondGenChecked) {
+  console.log('Veuiller sélectionner la case')
+  isValid = false
+}
 
 
+
+
+  
   if (isValid) {
     form.submit()
   }
