@@ -13,6 +13,8 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector(".close")
 const form = document.querySelector("form")
+const modalBody = document.querySelector(".content")
+const confirmationMessage =document.getElementById("confirmationMessage")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -105,7 +107,7 @@ function verifierBirthdate(champ, valeur, errorElement) {
 
 verifierBirthdate(birthdateInput,valeurBirthdate, errorElementBirthdate)
 
-
+birthdateInput.addEventListener("input", verifierBirthdate);
 
 /**********Validation de la quantité de tournois */
   const baliseQuantity = document.getElementById("quantity")
@@ -129,7 +131,6 @@ baliseCheck.forEach((radio) => {
   }
 })
 
-
   function verifierTournoi(isBaliseChecked, errorElement){
     if (isBaliseChecked) {
       errorElement.style.display ="none"
@@ -139,6 +140,7 @@ baliseCheck.forEach((radio) => {
   }
 
   verifierTournoi(isBaliseChecked, errorElementTournoi)
+
 
 /*** Validation conditions générales */
 const baliseCondGen = document.getElementById("checkbox1")
@@ -164,9 +166,16 @@ verifierConditions(isBaliseCondGenChecked, errorElementConditions)
 
 
 if (isValid) {
-  form.submit()
+  modalBody.style.display="none"
+  modalbg.style.display="none"
+  confirmationMessage.style.display = "block"
+  
+  form.reset()
+
+
 }
 })
+
 
 
 
