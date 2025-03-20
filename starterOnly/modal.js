@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector(".close")
+const form = document.querySelector("form")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -21,34 +22,60 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// close modal event
 btnClose.addEventListener("click", closeModal);
 
+// close modal form
 function closeModal () {
   modalbg.style.display = "none";
 }
 
-
-const form = document.querySelector("form")
-
+// submit form event
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   let isValid = true;
 
+  
+
 /********** Validation du prénom */
+
+
   const baliseFirst = document.getElementById("first")
   const valeurFirst = baliseFirst.value.trim();
-  if (valeurFirst.length < 2) {
-    console.log('Remplir au minimum deux caractères')
-    isValid = false
-  } 
+  const errorElementFirst = document.getElementById("error-element-first")
+  errorElementFirst.style.display ="none"
+  
+  function verifierChamp(champ, valeur, errorElement) {
+    if (valeur.length <2) {
+      errorElement.style.display ="block"
+  } else {
+    errorElement.style.display = "none"; // Cache l'erreur si le champ est valide
+  }
+}
+
+baliseFirst.addEventListener("input",() => {
+  const valeurFirst = baliseFirst.value.trim()
+  verifierChamp(baliseFirst, valeurFirst, errorElementFirst)
+})
+
+verifierChamp(baliseFirst, valeurFirst, errorElementFirst);
+
+
+
 
   /**********Validation du nom */
   const baliseLast = document.getElementById("last")
   const valeurLast = baliseLast.value.trim();
-  if (valeurLast.length < 2) {
-    console.log('Remplir au minimum deux caractères')
-    isValid = false
-  } 
+  const errorElementLast = document.getElementById("error-element-last")
+  errorElementLast.style.display ="none"
+
+  baliseLast.addEventListener("input",() => {
+    const valeurLast = baliseLast.value.trim()
+    verifierChamp(baliseLast, valeurLast, errorElementLast)
+  })
+
+verifierChamp(baliseLast, valeurLast, errorElementLast)
+
 
   /**********Validation de l'email */
   const baliseMail = document.getElementById("email")
@@ -59,6 +86,27 @@ form.addEventListener("submit", (event) => {
     console.log('Adresse email invalide')
     isValid = false
   } 
+
+/************Validation de la date de naissance */
+const birthdateInput = document.getElementById("birthdate");
+const valeurBirthdate = birthdateInput.value.trim();
+const errorElementBirthdate = document.getElementById("error-element-birthdate");
+
+function verifierBirthdate(champ, valeur, errorElement) {
+  console.log("Vérification de la date de naissance");  // Vérifie si la fonction est appelée
+  if (!birthdateInput.value) {
+    console.log("La date est vide");  // Vérifie si la condition est vraie
+    errorElementBirthdate.style.display = "block";  // Affiche le message d'erreur
+  } else {
+    console.log("La date est remplie");
+    errorElementBirthdate.style.display = "none";  // Cache le message d'erreur
+  }
+}
+
+verifierBirthdate(birthdateInput,valeurBirthdate, errorElementBirthdate)
+
+
+
 /**********Validation de la quantité de tournois */
   const baliseQuantity = document.getElementById("quantity")
   const valeurQuantity = baliseQuantity.value.trim()
@@ -70,19 +118,31 @@ form.addEventListener("submit", (event) => {
   } 
 
 
+  /***Validation tournoi */
 const baliseCheck = document.querySelectorAll("input[name='location']");
+const errorElementTournoi = document.getElementById("error-element-tournoi")
+
 let isBaliseChecked = false 
 baliseCheck.forEach((radio) => {
   if (radio.checked) {
     isBaliseChecked = true;
   }
-  if (!isBaliseChecked) {
-    console.log('Veuillez sélectionner un tournoi')
-    isValid = false
-  }
 })
 
+
+  function verifierTournoi(isBaliseChecked, errorElement){
+    if (isBaliseChecked) {
+      errorElement.style.display ="none"
+  } else {
+    errorElement.style.display = "block"; // Affiche l'erreur si le champ est non valide
+  }
+  }
+
+  verifierTournoi(isBaliseChecked, errorElementTournoi)
+
+/*** Validation conditions générales */
 const baliseCondGen = document.getElementById("checkbox1")
+const errorElementConditions = document.getElementById("error-element-conditions")
 let isBaliseCondGenChecked = false
 if (baliseCondGen.checked) {
   isBaliseCondGenChecked = true
@@ -92,14 +152,23 @@ if (!isBaliseCondGenChecked) {
   isValid = false
 }
 
-
-
-
-  
-  if (isValid) {
-    form.submit()
+function verifierConditions(isBaliseCondGenChecked, errorElement) {
+  if (isBaliseCondGenChecked) {
+    errorElement.style.display ="none"
+  } else {
+    errorElement.style.display="block"
   }
-});
+}
+
+verifierConditions(isBaliseCondGenChecked, errorElementConditions)
+
+
+if (isValid) {
+  form.submit()
+}
+})
+
+
 
 
 

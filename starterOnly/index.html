@@ -69,9 +69,11 @@
                   type="text"
                   id="first"
                   name="first"
-                  minlength="2"
                 /><br>
-              </div>
+                <div id="error-element-first" class ="error-message" style="color:red ; font-size: 0.6em ; display: none;">
+                  Le prénom doit contenir au moins 2 caractères.
+                </div>
+              </div>    
               <div
                 class="formData">
                 <label for="last">Nom</label><br>
@@ -81,6 +83,9 @@
                   id="last"
                   name="last"
                 /><br>
+                <div id="error-element-last" class ="error-message" style="color:red ; font-size: 0.6em ; display: none;">
+                  Le nom doit contenir au moins 2 caractères.
+                </div>
               </div>
               <div
                 class="formData">
@@ -101,6 +106,9 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <div id="error-element-birthdate" class ="error-message" style="color:red ; font-size: 0.6em ; display: none;">
+                  Vous devez entrer votre date de naissance.
+                </div>
               </div>
               <div
                 class="formData">
@@ -116,6 +124,9 @@
               <div
                 class="formData">
                 <label for="text-label">A quel tournoi souhaitez-vous participer cette année ?</label><br>
+                <div id="error-element-tournoi" class ="error-message" style="color:red ; font-size: 0.6em ; display: none;">
+                  Vous devez choisir une option.
+                </div>
                 <input 
                   class="checkbox-input"
                   type="radio"
@@ -207,6 +218,9 @@
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
+                <div id="error-element-conditions" class ="error-message" style="color:red ; font-size: 0.6em ; display: none;">
+                  Vous devez vérifier que vous acceptez les termes et conditions.
+                </div>
               </div>
               <input
                 class="btn-submit"
