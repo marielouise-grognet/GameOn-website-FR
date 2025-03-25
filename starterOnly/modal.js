@@ -71,8 +71,6 @@ form.addEventListener("submit", (event) => {
   };
 
 
-
-
   /********** Validation du nom */
   const baliseLast = document.getElementById("last");
   const errorElementLast = document.getElementById("error-element-last");
@@ -100,7 +98,6 @@ form.addEventListener("submit", (event) => {
   if (!verifierChampNom(baliseLast, errorElementLast)) {
     isValid = false;
   }
-
 
 
   /********** Validation de l'email */
