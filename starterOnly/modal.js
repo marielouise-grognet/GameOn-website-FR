@@ -53,12 +53,12 @@ form.addEventListener("submit", (event) => {
   function verifierChampPrenom(champ, valeurFirst, errorElement) {
     if (valeurFirst.length < 2) {
       errorElement.style.display = "block";
-      isValid = false;
+      return false;
     } else {
       errorElement.style.display = "none"; // Cache l'erreur si le champ est valide
+      return true 
     }
   }
-
   // Vérifier en temps réel pendant l'entrée dans le champ prénom
   baliseFirst.addEventListener("input", () => {
     valeurFirst = baliseFirst.value.trim();
@@ -66,7 +66,12 @@ form.addEventListener("submit", (event) => {
   });
 
   // Vérification du prénom à la soumission
-  verifierChampPrenom(baliseFirst, valeurFirst, errorElementFirst);
+  if (!verifierChampPrenom(baliseFirst, valeurFirst, errorElementFirst)) {
+    isValid = false
+  };
+
+
+
 
   /********** Validation du nom */
   const baliseLast = document.getElementById("last");
@@ -76,7 +81,6 @@ form.addEventListener("submit", (event) => {
   function verifierChampNom(champ, errorElement) {
     let valeur = champ.value.trim();
     console.log("Valeur du champ nom :", valeur);
-
     if (valeur.length < 2) {
       console.log("Nom invalide, affichage du message d'erreur");
       errorElement.style.display = "block";
@@ -87,7 +91,6 @@ form.addEventListener("submit", (event) => {
       return true;
     }
   }
-
   // Vérifier en temps réel pendant l'entrée dans le champ nom
   baliseLast.addEventListener("input", () => {
     verifierChampNom(baliseLast, errorElementLast);
@@ -98,6 +101,8 @@ form.addEventListener("submit", (event) => {
     isValid = false;
   }
 
+
+
   /********** Validation de l'email */
   const baliseMail = document.getElementById("email");
   let valeurMail = baliseMail.value.trim();
@@ -107,12 +112,12 @@ form.addEventListener("submit", (event) => {
   function verifierMail(baliseMail, valeurMail, errorElement) {
     if (!regexMail.test(valeurMail)) {
       errorElement.style.display = "block";
-      isValid = false;
+      return false
     } else {
       errorElement.style.display = "none"; // Cache l'erreur si le champ est valide
+      return true
     }
   }
-
   // Vérifier en temps réel pendant l'entrée dans le champ email
   baliseMail.addEventListener("input", () => {
     valeurMail = baliseMail.value.trim();
@@ -131,14 +136,17 @@ form.addEventListener("submit", (event) => {
   function verifierBirthdate(champ, errorElement) {
     if (!birthdateInput.value) {
       errorElement.style.display = "block";
-      isValid = false;
+      return false;
     } else {
       errorElement.style.display = "none";
+      return true
     }
   }
 
   // Vérification de la date de naissance à la soumission
-  verifierBirthdate(birthdateInput, errorElementBirthdate);
+  if (!verifierBirthdate(birthdateInput, errorElementBirthdate)) {
+    isValid = false
+  };
 
   /********** Validation de la quantité de tournois */
   const baliseQuantity = document.getElementById("quantity");
@@ -162,12 +170,16 @@ form.addEventListener("submit", (event) => {
   function verifierTournoi(isBaliseChecked, errorElement) {
     if (isBaliseChecked) {
       errorElement.style.display = "none";
+      return true 
     } else {
       errorElement.style.display = "block";
+      return false
     }
   }
 
-  verifierTournoi(isBaliseChecked, errorElementTournoi);
+  if (!verifierTournoi(isBaliseChecked, errorElementTournoi)) {
+    isValid = false
+  };
 
   /********** Validation des conditions générales */
   const baliseCondGen = document.getElementById("checkbox1");
@@ -177,12 +189,16 @@ form.addEventListener("submit", (event) => {
   function verifierConditions(isBaliseCondGenChecked, errorElement) {
     if (isBaliseCondGenChecked) {
       errorElement.style.display = "none";
+      return true
     } else {
       errorElement.style.display = "block";
+      return false
     }
   }
 
-  verifierConditions(isBaliseCondGenChecked, errorElementConditions);
+  if (!verifierConditions(isBaliseCondGenChecked, errorElementConditions)) {
+    isValid = false
+  };
 
   // Si toutes les validations sont passées, soumettre le formulaire
   if (isValid) {
