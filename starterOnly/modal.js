@@ -14,7 +14,7 @@ const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector(".close")
 const form = document.querySelector("form")
 const modalBody = document.querySelector(".content")
-const confirmationMessage =document.getElementById("confirmationMessage")
+const confirmationMessage =document.querySelector(".confirmationMessage")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -199,8 +199,7 @@ form.addEventListener("submit", (event) => {
 
   // Si toutes les validations sont passées, soumettre le formulaire
   if (isValid) {
-    modalBody.style.display = "none";
-    modalbg.style.display = "none";
+    form.style.display = "none";
     confirmationMessage.style.display = "block";
     form.reset();
   }

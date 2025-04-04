@@ -191,6 +191,7 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  height:782px;
   animation-name: modalopen, modalclose;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -476,7 +477,8 @@ input[data-error]::after {
 
 .confirmationMessage {
   font-size: 0.6em;
-  color: red;
+  color: white;
+  margin-top: 350px;
 }
 .hero-img {
   grid-column: span 8;
