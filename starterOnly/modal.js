@@ -15,10 +15,10 @@ const btnClose = document.querySelector(".close")
 const form = document.querySelector("form")
 const modalBody = document.querySelector(".content")
 const confirmationMessage =document.querySelector(".confirmationMessage")
+const closeConfirmation =document.querySelector (".closeConfirmation")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -26,11 +26,12 @@ function launchModal() {
 
 // close modal event
 btnClose.addEventListener("click", closeModal);
-
 // close modal form
 function closeModal () {
   modalbg.style.display = "none";
 }
+// close modal event
+closeConfirmation.addEventListener("click", closeModal);
 
 // submit form event
 form.addEventListener("submit", (event) => {
@@ -201,6 +202,7 @@ form.addEventListener("submit", (event) => {
   if (isValid) {
     form.style.display = "none";
     confirmationMessage.style.display = "block";
+    closeConfirmation.style.display ="block";
     form.reset();
   }
 });

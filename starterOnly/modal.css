@@ -475,10 +475,30 @@ input[data-error]::after {
   margin-top: 59px;
 }
 
+.confirmationBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .confirmationMessage {
   font-size: 0.6em;
   color: white;
   margin-top: 350px;
+}
+
+.closeConfirmation {
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  margin-top: 300px;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+
 }
 .hero-img {
   grid-column: span 8;
